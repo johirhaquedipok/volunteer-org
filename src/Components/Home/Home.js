@@ -1,16 +1,20 @@
+import { Col, Row } from "react-bootstrap";
 import useAllEffect from "../Hooks/useAllEffect";
 import VolunteerServices from "./VolunteerServices";
-
 const Home = () => {
   const [volunteerSupport] = useAllEffect();
-  console.log(volunteerSupport);
+
   return (
-    <div>
+    <>
       <h1>Volunteer</h1>
-      {volunteerSupport.map((services) => (
-        <VolunteerServices key={services._id} services={services} />
-      ))}
-    </div>
+      <Col>
+        <Row xs={1} md={3} className="g-4">
+          {volunteerSupport.map((services) => (
+            <VolunteerServices key={services._id} services={services} />
+          ))}
+        </Row>
+      </Col>
+    </>
   );
 };
 

@@ -2,8 +2,12 @@ import { Button } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
+import auth from "../../firebase.init";
+import Logout from "../Logout/Logout";
 const Header = () => {
+  const [user] = useAuthState(auth);
   return (
     <Navbar bg="light" expand="lg">
       <Container>
@@ -17,19 +21,27 @@ const Header = () => {
             <Nav.Link as={Link} to="/donation">
               Donation
             </Nav.Link>
-            <Nav.Link as={Link} to="/donation">
+            <Nav.Link as={Link} to="/event">
               Event
             </Nav.Link>
-            <Nav.Link as={Link} to="/donation">
+            <Nav.Link as={Link} to="/blog">
               Blog
             </Nav.Link>
 
-            <Button as={Link} to="/register" className="me-2">
-              Register
-            </Button>
-            <Button as={Link} to="/admin" variant="dark">
-              Admin
-            </Button>
+            {user ? (
+              <>
+                <Logout></Logout>
+              </>
+            ) : (
+              <>
+                <Button as={Link} to="/register" className="me-2">
+                  Register
+                </Button>
+                <Button as={Link} to="/admin" variant="dark">
+                  Admin
+                </Button>
+              </>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>
