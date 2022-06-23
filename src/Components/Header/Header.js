@@ -23,10 +23,8 @@ const Header = () => {
             <Nav.Link as={Link} to="/donation">
               Blog
             </Nav.Link>
-            <Nav.Link as={Link} to="/donation">
-              Admin
-            </Nav.Link>
-            <Button as={Link} to="/register">
+
+            <Button as={Link} to="/register" className="me-2">
               Register
             </Button>
             <Button as={Link} to="/admin" variant="dark">
